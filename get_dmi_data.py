@@ -103,12 +103,12 @@ def get_dmi_data(
 
 
 if __name__ == '__main__':
-    credentials = 'inputs/dmi_credentials.json'
+    credentials = 'inputs/credintials.json'
     f = open(credentials)
     api_key = json.load(f)
     f.close()
 
-    api_key = api_key['api-key']
+    api_key = api_key['api-credentials']
     start_date = '2015-01-01'
     end_date = '2021-06-01'
     json_filename = 'inputs/weather_stations.json'

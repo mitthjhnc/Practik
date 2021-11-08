@@ -57,5 +57,5 @@ def get_elspot_prices(start_date_str: str,
 
 if __name__ == '__main__':
     start_date_str = '2015-01-01'
-    end_date_str = '2021-06-01'
+    end_date_str = '2015-12-31'
     get_elspot_prices(start_date_str, end_date_str, save_to_parquet=True)
