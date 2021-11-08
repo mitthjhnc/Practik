@@ -83,11 +83,11 @@ def get_dmi_data(
             dates.append(date_to)
             values.append(data['properties']['value'])
 
-        d_f = pd.DataFrame({
-            "time": dates,
-            "temperature": values,
+        d_f = pd.DataFrame({ 
+            "time": dates, 
+            "temperature": values, 
             "station_id": station_id
-            })
+        })
 
         stations_data[station_id] = d_f
 

@@ -62,6 +62,7 @@ def get_elspot_prices(start_date_str: str,
 
 
 if __name__ == '__main__':
-    start_date_str = '2015-01-01'
-    end_date_str = '2015-12-31'
-    get_elspot_prices(start_date_str, end_date_str, save_to_pickle=True)
+    for year in range(2015, 2021):
+        start_date_str = f'{year}-01-01'
+        end_date_str = f'{year}-12-31'
+        get_elspot_prices(start_date_str, end_date_str, save_to_pickle=True)
