@@ -92,7 +92,7 @@ def get_dmi_data(
         stations_data[station_id] = d_f
 
     if save_to_pickle:
-        pkl_name = "data/Weather/temp_stations_dict" + start_date
+        pkl_name = "data/temp_stations_dict" + start_date
         pkl_name += "to" + end_date + ".pkl"
 
         with open(pkl_name, 'wb') as handle:
@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     print(stations_data)
 
-    pkl_name = "data/Weather/temp_stations_dict" + '2015-01-01'
+    pkl_name = "data/temp_stations_dict" + '2015-01-01'
     pkl_name += "to" + '2021-06-01' + ".pkl"
 
     with open(pkl_name, 'rb') as handle:
