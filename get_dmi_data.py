@@ -24,7 +24,7 @@ def get_dmi_data(
 
     Parameters
     ----------
-    api_key : str
+    api_key: str
         API-key acquired from DMI.
     stations : str
         Name of json file with the weather stations to load data from.

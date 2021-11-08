@@ -18,7 +18,7 @@ def get_elspot_prices(start_date_str: str,
 
     Parameters
     ----------
-    start_date_str : str
+    start_date_str: str
         Start of period you want data from.
     end_date_str : str
         End of the period you want data from.
