@@ -5,6 +5,7 @@ import pytz
 from dateutil.easter import easter
 import holidays
 from get_date_type import get_date_type
+import matplotlib.pyplot as plt
 
 
 #loading data from consumption files and makes it into one large DataFrame
@@ -54,6 +55,17 @@ d_f_consumption_sum['time'] = pd.to_datetime(d_f_consumption_sum['time']).dt.tz_
 #Make a data set that includes all relevant data for training
 d_f = pd.merge(avg_temp, d_f_consumption_sum, how='inner', on="time")
 
-#Itereat through time in
+# #Plot data
+# d_f.plot(x='time', y='GrossConsumptionMWh')
+# # plt.figure(1)
+# # plt.plot(d_f)
+# # plt.legend()
+# plt.show(block=True)
 
-print(d_f)
+# d_f.plot(x='time', y='temperature')
+# plt.show(block=True)
+
+#save to parquet file
+d_f.to_parquet('data/dataframe_consumption_temp.parquet', compression='gzip')
+
+# print(d_f)

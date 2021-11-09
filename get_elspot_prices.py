@@ -39,7 +39,7 @@ def get_elspot_prices(start_date_str: str,
 
     url_call = "https://api.energidataservice.dk/datastore_search_sql"
     sql_call = f"""SELECT * FROM "productionconsumptionsettlement"
-    WHERE "HourUTC" BETWEEN '{start_date}' AND '{end_date}'
+    WHERE "HourUTC" >= '{start_date}' AND "HourUTC" < '{end_date}'
     AND "PriceArea" BETWEEN 'DK1' AND 'DK2'"""
 
     response = requests.get(url_call,
@@ -64,5 +64,5 @@ def get_elspot_prices(start_date_str: str,
 if __name__ == '__main__':
     for year in range(2015, 2021):
         start_date_str = f'{year}-01-01'
-        end_date_str = f'{year}-12-31'
+        end_date_str = f'{year+1}-01-01'
         get_elspot_prices(start_date_str, end_date_str, save_to_pickle=True)
