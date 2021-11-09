@@ -79,8 +79,14 @@ for hour in d_f['time']:
     else:
         workday.append(0)
 
-#Adds the column
+#Adds the workingday column
 d_f = pd.concat([pd.DataFrame({'workday': workday}), d_f], axis = 1)
+
+#Adds year column
+year = (d_f['time'] - d_f['time'].min()) / pd.Timedelta('365 days')
+d_f["year"] = year
+# d_f = pd.concat([d_f, pd.DataFrame({'year' : year})], axis = 1)
+
 #save to parquet file
 d_f.to_parquet('data/dataframe_consumption_temp.parquet', compression='gzip')
 
