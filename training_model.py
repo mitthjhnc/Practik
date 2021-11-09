@@ -12,14 +12,11 @@ d_f_test = d_f.query("time > '2020-01-01 00:00:00+00:00'")
 # print(d_f_train)
 
 #creates a X_train and y_train to be inputted in the sklearn .fit method
-X_train = d_f_train[['temperature']]
+X_train = d_f_train.drop(columns=['time', 'GrossConsumptionMWh'])
 y_train = d_f_train['GrossConsumptionMWh']
 
-d_f_train.iloc[:].plot(x='time', y='temperature')
-plt.show(block=True)
-
 #creates a X_test to input into sklearn .predict method and y_test to be used to test answers.
-X_test = d_f_test[['temperature']]
+X_test = d_f_test.drop(columns=['time', 'GrossConsumptionMWh'])
 y_test = d_f_test['GrossConsumptionMWh']
 
 model = sklearn.linear_model.LinearRegression()
@@ -30,5 +27,5 @@ print(model.coef_, model.intercept_)
 y_pred = model.predict(X_test)
 
 d_f_compare = pd.DataFrame({'y_pred': y_pred, 'y_test': y_test})
-d_f_compare.iloc[:100].plot()
+d_f_compare.plot()
 plt.show(block=True)

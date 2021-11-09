@@ -3,7 +3,7 @@ import pickle
 import pandas as pd
 import pytz
 from dateutil.easter import easter
-import holidays
+from workalendar.europe import Denmark
 from get_date_type import get_date_type
 import matplotlib.pyplot as plt
 
@@ -65,6 +65,22 @@ d_f = pd.merge(avg_temp, d_f_consumption_sum, how='inner', on="time")
 # d_f.plot(x='time', y='temperature')
 # plt.show(block=True)
 
+#one hot encoding time of day
+d_f_hour_one_hot = pd.get_dummies(d_f.time.dt.hour, drop_first = True, prefix='hour')
+d_f = pd.concat([d_f, d_f_hour_one_hot], axis = 1)
+
+#including column on if it is a working day
+#This is done by iterating through all the hours and seeing if the day is a work day or not
+cal = Denmark()
+workday = []
+for hour in d_f['time']:
+    if cal.is_working_day(hour):
+        workday.append(1)
+    else:
+        workday.append(0)
+
+#Adds the column
+d_f = pd.concat([pd.DataFrame({'workday': workday}), d_f], axis = 1)
 #save to parquet file
 d_f.to_parquet('data/dataframe_consumption_temp.parquet', compression='gzip')
 
